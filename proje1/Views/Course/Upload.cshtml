@@ -1,0 +1,36 @@
+@model Videolar
+
+@{
+    ViewData["Title"] = "Kurs Yükleme";
+}
+
+<form asp-action="Upload" method="post" enctype="multipart/form-data" style="padding-top: 30px;">
+    <div class="mb-3">
+        <label asp-for="Baslik" class="form-label">Kurs Adı:</label>
+        <input asp-for="Baslik" class="form-control">
+        <span asp-validation-for="Baslik"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Kategori" class="form-label">Kurs Kategorisi</label>
+        <select asp-for="Kategori" class="form-select">
+            <option value="">Seçiniz</option>
+            <option value="Yazılım">Yazılım</option>
+            <option value="Yabancı Dil">Yabancı Dil</option>
+        </select>
+        <span asp-validation-for="Kategori"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Aciklama" class="form-label">Kurs Açıklaması</label>
+        <input asp-for="Aciklama" class="form-control" style="height: 200px;">
+        <span asp-validation-for="Aciklama"></span>
+    </div>
+    <div class="mb-3">
+        <span asp-validation-for="Resim">Resim Yükleme:</span>
+        <input type="file" asp-for="Resim" required/>
+    </div>
+    <div class="mb-3">
+        <span asp-validation-for="VideoData">Video Yükleme:</span>
+        <input type="file" asp-for="VideoData" required/>
+        <button type="submit">Upload</button>
+    </div>
+</form>

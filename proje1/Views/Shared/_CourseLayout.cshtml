@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - proje1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/proje1.styles.css" asp-append-version="true" />
+</head>
+<body style="height: 500px; background-color: #ECEFF1">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand fs-4" asp-controller="Home" asp-action="Index">Udemy</a>
+                <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header text-white border-bottom">
+                        <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Offcanvas</h5>
+                        <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav ms-auto flex-grow-1 pe-3">
+                            <li class="nav-item mx-2 dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Kategoriler
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                                    <li><a class="dropdown-item" asp-controller="Course" asp-action="Index" asp-route-id="1">Yazılım Kursları</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Course" asp-action="Index" asp-route-id="2">Yabancı Dil Kursları</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+    
+                        @using (Html.BeginForm("Index", "Course", FormMethod.Get))
+                        {
+                            <form class="d-flex justify-content-center flex-grow-1">
+                                <input class="form-control me-2" type="search" name="searchString" placeholder="Search" aria-label="Search" value="@ViewBag.SearchString">                         
+                            </form>
+                        }
+    
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid" style="padding: 0;">
+        <main role="main" class="pb-3" style="padding-top: 56px;">
+            @RenderBody()
+        </main>
+    </div>
+
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

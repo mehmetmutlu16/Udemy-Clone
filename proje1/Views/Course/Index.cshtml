@@ -1,0 +1,125 @@
+@model List<proje1.Data.Videolar>
+
+    @{
+        ViewData["Title"] = "Kurslar Sayfası";
+    }
+    
+    <div class="row text-center mt-3">
+        @if(Convert.ToInt32(ViewContext.RouteData.Values["id"]) == 1)
+        {
+            <h2>Yazılım Kategorisi</h2>
+        }
+        else if(Convert.ToInt32(ViewContext.RouteData.Values["id"]) == 2)
+        {
+            <h2>Yabancı Dil Kategorisi</h2>
+        }
+    </div>
+    <div class="container mt-3">
+        <div class="row">
+            @foreach (var video in Model)
+            {
+                @if(Convert.ToInt32(ViewContext.RouteData.Values["id"]) == 1)
+                {
+                    if(video.Kategori == "Yazılım")
+                    {
+                        <div class="col-md-3 mb-4">
+                            <a asp-action="CourseView" asp-route-id="@video.Id" class="text-decoration-none">
+                                <div class="card text-center" style="width: 300px; height: 300px;">
+                                    @if (video.Resim != null && video.Resim.Length > 0)
+                                    {
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(video.Resim)" class="card-img-top mx-auto" alt="@video.Baslik" style="width: 90%; height: 70%; object-fit: contain;">
+                                    }
+                                    else
+                                    {
+                                        <p>No image available</p>
+                                    }
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center pb-1">@video.Baslik</h5>
+                                        <button type="submit" class="mt-1" asp-action="CourseView" asp-route-id="@video.Id">Kursa Başla</button>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+                else if(Convert.ToInt32(ViewContext.RouteData.Values["id"]) == 2)
+                {
+                    if(video.Kategori == "Yabancı Dil")
+                    {
+                        <div class="col-md-3 mb-4">
+                            <a asp-action="CourseView" asp-route-id="@video.Id" class="text-decoration-none">
+                                <div class="card text-center" style="width: 300px; height: 300px;">
+                                    @if (video.Resim != null && video.Resim.Length > 0)
+                                    {
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(video.Resim)" class="card-img-top mx-auto" alt="@video.Baslik" style="width: 90%; height: 70%; object-fit: contain;">
+                                    }
+                                    else
+                                    {
+                                        <p>No image available</p>
+                                    }
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center pb-1">@video.Baslik</h5>
+                                        <button type="submit" class="mt-1">Kursa Başla</button>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }else
+                {
+                    <div class="col-md-3 mb-4">
+                        <a asp-action="CourseView" asp-route-id="@video.Id" class="text-decoration-none">
+                            <div class="card text-center" style="width: 300px; height: 300px;">
+                                @if (video.Resim != null && video.Resim.Length > 0)
+                                {
+                                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(video.Resim)" class="card-img-top mx-auto" alt="@video.Baslik" style="width: 90%; height: 70%; object-fit: contain;">
+                                }
+                                else
+                                {
+                                    <p>No image available</p>
+                                }
+                                <div class="card-body">
+                                    <h5 class="card-title text-center pb-1">@video.Baslik</h5>
+                                    <button type="submit" class="mt-1">Kursa Başla</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+                
+            }
+        </div>
+    
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Önerilen Kategoriler</h5>
+                        <div class="row">
+                            <div class="col-md-3 mb-4">
+                                <div class="card text-center" style="width: 200px; height: 100px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Yazılım</h5>
+                                        <form method="post" asp-action="Index" asp-route-id="1">
+                                            <button type="submit" class="mt-1" >Git</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="card text-center" style="width: 200px; height: 100px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Yabancı Dil</h5>
+                                        <form method="post" asp-action="Index" asp-route-id="2">
+                                            <button type="submit" class="mt-1" >Git</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    

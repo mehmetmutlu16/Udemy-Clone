@@ -1,0 +1,32 @@
+@using System.Security.Claims
+
+<div class="d-flex justify-content-end align-items-center gap-3 navbar-right">
+    <ul class="navbar-nav ms-auto">
+        @if(User.Identity is ClaimsIdentity claimsIdentity && claimsIdentity.IsAuthenticated){
+            <ul class="navbar-nav ms-auto flex-grow-1 pe-3">
+                <li class="nav-item mx-2 dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @claimsIdentity.Name
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Abonelik">Aboneliğim</a></li>
+                        <li><a class="dropdown-item" asp-controller="Account" asp-action="OgrenciMiKontrol">Kurs Ekle</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <li class="nav-item">
+                <a href="/account/logout" class="nav-link">Logout</a>
+            </li>
+        } else {
+            <li class="nav-item">
+                <a href="/account/login" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="/account/register" class="nav-link">Register</a>
+            </li>
+        }
+    </ul>
+</div>
+
+
+
